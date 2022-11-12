@@ -15,43 +15,29 @@ void Player::placeSymbol(int x, int y, char grid[3][3]) {
     grid[x][y] = symbol;
 }
 
-bool Player::checkWinHorizontal(Player *p, char grid[3][3], int x) {
-
-    int count = 0;
+bool Player::checkWinHorizontal(Player *p, char grid[3][3]) {
 
     for (int i = 0; i < 3; i++) {
-        if (grid[x][i] == p->symbol) {
-            count++;
+        if (grid[0][i] == p->symbol && grid[1][i] == p->symbol && grid[2][i] == p->symbol) {
+            return true;
         }
     }
 
-    if (count == 3) {
-        cout << "here horiz" << endl;
-        return true;
-    } else {
-        return false;
-    }
+    return false;
 }
 
-bool Player::checkWinVertical(Player *p, char grid[3][3], int y) {
-
-    int count = 0;
+bool Player::checkWinVertical(Player *p, char grid[3][3]) {
 
     for (int i = 0; i < 3; i++) {
-        if (grid[i][y] == p->symbol) {
-            count++;
+        if (grid[i][0] == p->symbol && grid[i][1] == p->symbol && grid[i][2] == p->symbol) {
+            return true;
         }
     }
 
-    if (count == 3) {
-        cout << "here vert" << endl;
-        return true;
-    } else {
-        return false;
-    }
+    return false;
 }
 
-bool Player::checkWinDiagonal(Player *p, char grid[3][3]) {
+bool Player::checkWinLeftDiagonal(Player *p, char grid[3][3]) {
 
     int count = 0;
 
@@ -63,6 +49,15 @@ bool Player::checkWinDiagonal(Player *p, char grid[3][3]) {
 
     if (count == 3) {
         cout << "here diag" << endl;
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
+bool Player::checkWinRightDiagonal(Player *p, char grid[3][3]) {
+    if (grid[0][2] == p->symbol && grid[1][1] == p->symbol && grid[2][0] == p->symbol) {
         return true;
     } else {
         return false;
